@@ -1,0 +1,141 @@
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+# Color Palette
+[palette]
+  rosewater = "#f4dbd6"
+  flamingo = "#f0c6c6"
+  pink = "#f5bde6"
+  mauve = "#c6a0f6"
+  red = "#ed8796"
+  maroon = "#ee99a0"
+  peach = "#f5a97f"
+  yellow = "#eed49f"
+  green = "#a6da95"
+  teal = "#8bd5ca"
+  sky = "#91d7e3"
+  sapphire = "#7dc4e4"
+  blue = "#8aadf4"
+  lavender = "#b7bdf8"
+  text = "#cad3f5"
+  subtext1 = "#b8c0e0"
+  subtext0 = "#a5adcb"
+  overlay2 = "#939ab7"
+  overlay1 = "#8087a2"
+  overlay0 = "#6e738d"
+  surface2 = "#5b6078"
+  surface1 = "#494d64"
+  surface0 = "#363a4f"
+  base = "#24273a"
+  mantle = "#1e2030"
+  crust = "#181926"
+
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+  # OS config
+  [[blocks.segments]]
+  type="os"
+  style = "diamond"
+  foreground = "p:text"
+  background = "p:surface0"
+  leading_diamond = ""
+  trailing_diamond = ""
+  template = "{{.Icon }} "
+  
+  
+
+  # Directory Structure
+  [[blocks.segments]]
+  type = "path"
+  style = "diamond"
+  leading_diamond = ""
+  trailing_diamond = ""
+  foreground = "p:base"
+  background = "p:mauve"
+    [blocks.segments.properties]
+    folder_separator_icon = "  "
+    home_icon = ""
+    style = "agnoster_full"
+
+      [blocks.segments.properties.mapped_locations]
+      "~" = " "
+      "~/Downloads" = " "
+      "~/Code" = " "
+      "~/Code/Git" = " "
+      "~/Pictures" = " "
+      "~/Documents" = "󰈙"
+      "~/Desktop" = " "
+  # git
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
+overflow = "hidden"
+  
+  # Execution time
+  [[blocks.segments]]
+  type = "executiontime"
+  style = "diamond"
+  leading_diamond = ""
+  trailing_diamond = ""
+  foreground = "p:base"
+  background = "p:red"
+  template = " <p:base>󱎫</#> {{ .FormattedMs }} "
+  [blocks.segments.properties]
+  style = "round"
+  threshold = 500
+
+  # Programming languages
+
+  # Host name
+  [[blocks.segments]]
+  type = "session"
+  style = "diamond"
+  foreground = "p:base"
+  background = "p:peach"
+  leading_diamond = ""
+  template = "{{ if .SSHSession }} {{ end }} {{ .UserName }} "
+  
+  # Time
+  [[blocks.segments]]
+  type = "time"
+  style = "diamond"
+  leading_diamond = ""
+  trailing_diamond = ""
+  foreground = "p:base"
+  background = "p:green"
+    [blocks.segments.properties]
+    time_format = " 15:04"
+
+
+# Command Area  
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    foreground_templates =  [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}green{{end}}"
+    ]
+    foreground = "green"
+    background = ""
+    template = ""
+
+
+
+[transient_prompt]
+background = 'transparent'
+foreground = "p:green"
+template = ' '
+foreground_templates =  [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}green{{end}}"
+    ]
