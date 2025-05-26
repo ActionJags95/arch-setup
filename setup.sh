@@ -1,3 +1,4 @@
+#!/bin/bash
 function greeter() {
 echo "
  █████╗ ██████╗  ██████╗██╗  ██╗      ███████╗███████╗████████╗██╗   ██╗██████╗ 
@@ -47,7 +48,8 @@ fi
 echo ""
 
 
+HOME_DIR=$PWD
 source "$PWD/directories.conf"
 for directory in "${directories[@]}" ; do
-  source "$PWD/$directory/install.sh"
+  source "$HOME_DIR/$directory/install.sh"
 done
