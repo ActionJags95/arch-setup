@@ -15,18 +15,20 @@ sleep 0.5
 greeter
 sleep 2
 
-echo "Starting full system upgrade..."
-sleep 2
+function pause_msg() {
+  echo "$1"
+  sleep 2
+}
+
+sleep_msg "Starting full system upgrade..."
 sudo pacman -Syu
 echo ""
-sleep 2
 
 # Yay setup
 ## Ensuring git is installed
 if ! which git > /dev/null ; then
-  echo "Git is not installed, installing git..."
+  sleep_msg "Git is not installed, installing git..."
   sudo pacman -S git
-  sleep 2
 else
   echo "Git is aleardy installed. Proceeding with installing YAY....!"
   sleep 2
