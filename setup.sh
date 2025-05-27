@@ -11,13 +11,15 @@ echo "
   *Welcome to the Arch-Setup by ActionJags*
 "
 }
+clear
 sleep 0.5
 greeter
-sleep 2
+sleep 1
 
-function pause_msg() {
+function sleep_msg() {
+  sleep 1
   echo "$1"
-  sleep 2
+  sleep 1
 }
 
 sleep_msg "Starting full system upgrade..."
@@ -26,22 +28,19 @@ echo ""
 
 # Yay setup
 ## Ensuring git is installed
-if ! which git > /dev/null ; then
+if ! command -v git > /dev/null ; then
   sleep_msg "Git is not installed, installing git..."
-  sudo pacman -S git
+  sudo pacman -S --noconfirm git
 else
-  echo "Git is aleardy installed. Proceeding with installing YAY....!"
-  sleep 2
+  sleep_msg "Git is aleardy installed. Proceeding with installing YAY....!"
 fi
 echo ""
 
 ## Installing yay
-if which yay > /dev/null ; then
-  echo "Already installed yay. Proceeding with setup..."
-  sleep 2
+if command -v yay > /dev/null ; then
+  sleep_msg "Already installed yay. Proceeding with setup..."
 else
-  echo "Yay not installed, installing yay..."
-  sleep 2
+  sleep_msg "Yay not installed, installing yay..."
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si
@@ -51,7 +50,10 @@ echo ""
 
 
 HOME_DIR=$PWD
-source "$PWD/directories.conf"
+source "$HOME_DIR/directories.conf"
 for directory in "${directories[@]}" ; do
+  if [[ -f "$HOME_DIR/$directory/packages.conf" ]]; then
+     source "$HOME_DIR/$directory/packages.conf"
+  fi
   source "$HOME_DIR/$directory/install.sh"
 done
