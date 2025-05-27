@@ -41,6 +41,7 @@ if command -v yay > /dev/null ; then
   sleep_msg "Already installed yay. Proceeding with setup..."
 else
   sleep_msg "Yay not installed, installing yay..."
+  cd ~
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si
