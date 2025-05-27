@@ -50,11 +50,9 @@ fi
 echo ""
 
 
-HOME_DIR=$PWD
-source "$HOME_DIR/directories.conf"
-for directory in "${directories[@]}" ; do
-  if [[ -f "$HOME_DIR/$directory/packages.conf" ]]; then
-     source "$HOME_DIR/$directory/packages.conf"
+for directory in /* ; do
+  if [[ -f "$directory/packages.conf" ]]; then
+     source "$directory/packages.conf"
   fi
-  source "$HOME_DIR/$directory/install.sh"
+  source "$directory/install.sh"
 done
