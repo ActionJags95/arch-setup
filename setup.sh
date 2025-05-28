@@ -44,7 +44,7 @@ else
   cd ~
   git clone https://aur.archlinux.org/yay.git
   cd yay
-  makepkg -si
+  makepkg --noconfirm -si
   cd .. && rm -r yay
 fi
 echo ""
