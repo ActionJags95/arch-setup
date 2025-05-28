@@ -50,7 +50,7 @@ fi
 echo ""
 
 
-for directory in /* ; do
+for directory in ./* ; do
   if [[ -f "$directory/packages.conf" ]]; then
      source "$directory/packages.conf"
   fi
