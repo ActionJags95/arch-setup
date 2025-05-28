@@ -36,7 +36,7 @@ sleep 1
 cd ~
 if [[ -d "dotfiles" ]] ; then
   pause_msg "Found a directory named dotfiles, removing it"
-  rm -rf "~/dotfiles"
+  rm -rf ~/dotfiles
 fi
 git clone https://github.com/ActionJags95/dotfiles.git
 
