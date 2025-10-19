@@ -1,4 +1,9 @@
 #!/bin/bash
+
+export HOME_DIR=~
+export SETUP_DIR=~/arch-setup
+export DOTFILES_DIR=~/dotfiles
+
 function greeter() {
 echo "
  █████╗ ██████╗  ██████╗██╗  ██╗      ███████╗███████╗████████╗██╗   ██╗██████╗ 
@@ -41,18 +46,21 @@ if command -v yay > /dev/null ; then
   sleep_msg "Already installed yay. Proceeding with setup..."
 else
   sleep_msg "Yay not installed, installing yay..."
-  cd ~
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
+  cd "$HOME_DIR"
+  git clone https://aur.archlinux.org/yay.git "$HOME_DIR"/yay
+  cd "$HOME_DIR/yay"
   makepkg --noconfirm -si
-  cd .. && rm -rf yay
+  cd "$HOME_DIR" && rm -rf yay
 fi
 echo ""
 
 
-for directory in */ ; do
+for directory in "$SETUP_DIR"/*/ ; do
   if [[ -f "$directory/packages.conf" ]]; then
     source "$directory/packages.conf"
   fi
   source "$directory/install.sh"
 done
+
+# Post install procedure
+bash "$SETUP_DIR"/post-install.sh
