@@ -69,4 +69,4 @@ if [[ -d "$DOTFILES_DIR" ]] ; then
 fi
 git clone https://github.com/ActionJags95/dotfiles.git "$DOTFILES_DIR"
 
-source "$DOTFILES_DIR/setup.sh"
+cd "$DOTFILES_DIR" && source "setup.sh"
