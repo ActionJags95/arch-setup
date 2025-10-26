@@ -4,9 +4,7 @@ function pause_msg() {
   sleep 1
 }
 
-CWD=$(pwd)
-
-for PACKAGE_FILE in "$CWD"/*.conf ; do
+for PACKAGE_FILE in "$PACKAGES_DIR"/*.conf ; do
   source "$PACKAGE_FILE"
   clear
   echo "$MASCOT"
