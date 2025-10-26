@@ -3,6 +3,8 @@
 export HOME_DIR=~
 export SETUP_DIR=~/arch-setup
 export DOTFILES_DIR=~/dotfiles
+export PACKAGES_DIR="$SETUP_DIR/packages"
+export SYSDOTS_DIR="$SETUP_DIR/sys-dots"
 
 function greeter() {
 echo "
@@ -54,13 +56,17 @@ else
 fi
 echo ""
 
+# Calling the package setup utility
+source "$PACKAGES_DIR/setup.sh"
 
-for directory in "$SETUP_DIR"/*/ ; do
-  if [[ -f "$directory/packages.conf" ]]; then
-    source "$directory/packages.conf"
-  fi
-  source "$directory/install.sh"
-done
+# Calling the sys-dots setup utility
+source "$SYSDOTS_DIR/setup.sh"
 
-# Post install procedure
-bash "$SETUP_DIR"/post-install.sh
+cd "$HOME_DIR"
+if [[ -d "$DOTFILES_DIR" ]] ; then
+  pause_msg "Found a directory named dotfiles, removing it"
+  rm -rf "$DOTFILES_DIR"
+fi
+git clone https://github.com/ActionJags95/dotfiles.git "$DOTFILES_DIR"
+
+source "$DOTFILES_DIR/setup.sh"
