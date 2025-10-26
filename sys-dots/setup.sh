@@ -11,14 +11,10 @@ if [ -d "$SYSDOTS_DIR/dracut.conf.d" ] ; then
 fi
 
 # Copying and setting the plymouth theme
-echo "$SYSDOTS_DIR"
-if [ -d "/usr/share/plymouth/" ] && [ -d "$SYSDOTS_DIR/catppuccin-macchiato" ] ; then
-  sudo cp -r "$SYS_DOTS/catppuccin-macchiato" "/usr/share/plymouth/themes/"
-  sudo plymouth-set-default-theme -R catppuccin-macchiato
-fi
-
-# Building init-system
 if [ -f "$SYSDOTS_DIR/mkinitcpio.conf" ] ; then
   sudo cp "$SYSDOTS_DIR/mkinitcpio.conf" "/etc/mkinitcpio.conf"
 fi
-sudo mkinitcpio -P
+if [ -d "/usr/share/plymouth/" ] && [ -d "$SYSDOTS_DIR/catppuccin-macchiato" ] ; then
+  sudo cp -r "$SYSDOTS_DIR/catppuccin-macchiato" "/usr/share/plymouth/themes/"
+  sudo plymouth-set-default-theme -R catppuccin-macchiato
+fi
