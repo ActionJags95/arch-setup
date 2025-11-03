@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 function pause_msg() {
   echo "$1"
   sleep 1

@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 # Setting grub flags
 echo 'GRUB_DISABLE_OS_PROBER=false' | sudo tee -a /etc/default/grub
 echo 'GRUB_THEME="/usr/share/grub/themes/catppuccin-macchiato/theme.txt"' | sudo tee -a /etc/default/grub

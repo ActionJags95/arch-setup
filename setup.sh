@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 export HOME_DIR=~
 export SETUP_DIR=~/arch-setup
