@@ -33,27 +33,20 @@ sleep_msg "Starting full system upgrade..."
 sudo pacman -Syu
 echo ""
 
-# Yay setup
-## Ensuring git is installed
-if ! command -v git > /dev/null ; then
-  sleep_msg "Git is not installed, installing git..."
-  sudo pacman -S --noconfirm git
-else
-  sleep_msg "Git is aleardy installed. Proceeding with installing YAY....!"
-fi
-echo ""
+# Chaotic AUR setup
+echo "Setting up Chaotic-AUR"
+pacman-key --init
+pacman-key --populate archlinux
 
-## Installing yay
-if command -v yay > /dev/null ; then
-  sleep_msg "Already installed yay. Proceeding with setup..."
-else
-  sleep_msg "Yay not installed, installing yay..."
-  cd "$HOME_DIR"
-  git clone https://aur.archlinux.org/yay.git "$HOME_DIR"/yay
-  cd "$HOME_DIR/yay"
-  makepkg --noconfirm -si
-  cd "$HOME_DIR" && rm -rf yay
-fi
+sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key 3056513887B78AEB
+
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+# Copying pacman.conf to required folder
+cp $SYSDOTS_DIR/pacman.conf /etc/pacman.conf
+
 echo ""
 
 # Calling the package setup utility
