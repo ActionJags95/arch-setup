@@ -45,7 +45,8 @@ sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.ta
 sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 # Copying pacman.conf to required folder
-cp $SYSDOTS_DIR/pacman.conf /etc/pacman.conf
+sudo cp $SYSDOTS_DIR/pacman.conf /etc/pacman.conf
+sudo pacman -Syu
 
 echo ""
 
