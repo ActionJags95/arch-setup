@@ -13,10 +13,11 @@ for PACKAGE_FILE in "$PACKAGES_DIR"/*.conf ; do
 
   for package in "${PACKAGES[@]}" ; do
     pause_msg "Package: $package, initiating installation..."
-    if yay -Q "$package" 2> /dev/null ; then
+    if pacman -Q "$package" 2> /dev/null ; then
       pause_msg "$package already installed, skipping installation."
     else
-      yay -S --noconfirm "$package"
+      pause_msg "$package not installed.... "
+      sudo pacman -S --noconfirm "$package"
     fi
   done
 done
