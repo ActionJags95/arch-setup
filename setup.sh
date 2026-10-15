@@ -61,6 +61,6 @@ if [[ -d "$DOTFILES_DIR" ]] ; then
   pause_msg "Found a directory named dotfiles, removing it"
   rm -rf "$DOTFILES_DIR"
 fi
-git clone https://github.com/ActionJags95/dotfiles.git "$DOTFILES_DIR"
+git clone https://github.com/ActionJags95/dotfiles.git -b hyprland_lua "$DOTFILES_DIR"
 
 cd "$DOTFILES_DIR" && source "setup.sh"
