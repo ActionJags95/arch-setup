@@ -19,3 +19,10 @@ if [ -d "/usr/share/plymouth/" ] && [ -d "$SYSDOTS_DIR/catppuccin-macchiato" ] ;
   sudo cp -r "$SYSDOTS_DIR/catppuccin-macchiato" "/usr/share/plymouth/themes/"
   sudo plymouth-set-default-theme -R catppuccin-macchiato
 fi
+
+if [ ! -d "/etc/iwd"] ; then
+    sudo mkdir "/etc/iwd"
+fi
+
+sudo cp "$SYSDOTS_DIR/network-conf" "/etc/iwd/main.conf"
+sudo systemctl restart iwd
