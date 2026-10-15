@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 # Setting grub flags
-sudo cp "$SYSDOTS_DIR/sentinel" "/usr/share/grub/themes/"
+sudo cp -r "$SYSDOTS_DIR/sentinel" "/usr/share/grub/themes/"
 
 echo 'GRUB_THEME="/usr/share/grub/themes/sentinel/theme.txt"' | sudo tee -a /etc/default/grub
 echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' | sudo tee -a /etc/default/grub
